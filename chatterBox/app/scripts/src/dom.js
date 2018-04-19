@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import md5 from 'crypto-js/md5';
 import moment from 'moment';
+
 function createGravatarUrl(username) {
   // create a hash based on username
   let userhash = md5(username);
@@ -38,22 +39,26 @@ export class ChatList {
     this.username = username;
   }
 
-  drawMessage({ user: u, timestamp: t, message: m}) {
-      let $messageRow = $('<li>', {
-        'class': 'message-row'
-      });
-      if (this.username === u) {
-        $messageRow.addClass('me');
-      }
-      let $message = $('<p>');
-      $message.append($('<span>', {
-        'class': 'message-username',
-        text: u
-      }));
-      $message.append($('<span>', {
-        'class': 'timestamp',
-        'data-time': t,
-        text: moment(t).fromNow()
+  drawMessage({
+    user: u,
+    timestamp: t,
+    message: m
+  }) {
+    let $messageRow = $('<li>', {
+      'class': 'message-row'
+    });
+    if (this.username === u) {
+      $messageRow.addClass('me');
+    }
+    let $message = $('<p>');
+    $message.append($('<span>', {
+      'class': 'message-username',
+      text: u
+    }));
+    $message.append($('<span>', {
+      'class': 'timestamp',
+      'data-time': t,
+      text: moment(t).fromNow()
     }));
     $message.append($('<span>', {
       'class': 'message-message',
@@ -72,13 +77,13 @@ export class ChatList {
   }
 
   init() {
-  this.timer = setInterval(() => {
-    $('[data-time]').each((idx, element) => {
-      let $element = $(element);
-      let timestamp = new Date().setTime($element.attr('data-time'));
-      let ago = moment(timestamp).fromNow();
-      $element.html(ago);
-    });
-  }, 1000);
-}
+    this.timer = setInterval(() => {
+      $('[data-time]').each((idx, element) => {
+        let $element = $(element);
+        let timestamp = new Date().setTime($element.attr('data-time'));
+        let ago = moment(timestamp).fromNow();
+        $element.html(ago);
+      });
+    }, 1000);
+  }
 }

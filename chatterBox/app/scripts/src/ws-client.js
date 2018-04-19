@@ -3,7 +3,7 @@
 - perform init setupt on connection
 - forward incomming messages to DOM
 - send outgoing msg to server*/
-
+var WebSocket = require('ws');
 let socket;
 
 //Connects to the WebSocket server
@@ -23,7 +23,7 @@ function registerOpenHandler(handlerFunction) {
 // Receives object from server
 function registerMessageHandler(handlerFunction) {
   socket.onmessage = (event) => {
-    console.log("message", event.data);
+    console.log('message', event.data);
     let data = JSON.parse(event.data);
     handlerFunction(data);
   };
@@ -38,4 +38,4 @@ export default {
   registerOpenHandler,
   registerMessageHandler,
   sendMessage
-}
+};

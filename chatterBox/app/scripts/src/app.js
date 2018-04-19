@@ -40,7 +40,7 @@ class ChatApp {
       console.log(data);
       let message = new ChatMessage(data);
       this.chatList.drawMessage(message.serialize());
-    })
+    });
   }
 }
 //This ChatMsg class represent individual chat messages
