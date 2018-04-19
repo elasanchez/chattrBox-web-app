@@ -1,13 +1,22 @@
 module.exports = {
+  "parser": "babel-eslint",
   "env": {
     "node": true,
-    "browser": true
+    "es6": true
   },
-  "extends": "eslint:recommended",
-  //"parser": "babel-eslint",
+   "extends": "eslint:recommended",
+   "parserOptions": {
+     "ecmaVersion": 6,
+     "sourceType": "module",
+     "ecmaFeatures": {
+         "jsx": true
+     }
+ },
   "rules": {
+    "strict" : 0,
     "no-console": "off",
-    "no-undef": "error",
+    "no-undef": "off",
+    "no-alert": "off",
     "indent": [
       "error",
       2
